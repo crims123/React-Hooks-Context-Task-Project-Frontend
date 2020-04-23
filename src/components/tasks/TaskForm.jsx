@@ -1,16 +1,18 @@
 import React, { useContext } from "react";
 import useInput from "../../hooks/useInput";
 import projectContext from "../../context/projects/projectContext";
+import taskContext from "../../context/tasks/taskContext";
 
 function TaskForm() {
   const { currentProject } = useContext(projectContext);
+  const { setAddTask } = useContext(taskContext);
   const [value, handleChange] = useInput({
     name: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    setAddTask({ ...value, projectId: currentProject.id, id: Date.now(), complete: false })
   };
 
   if (!currentProject) return null;

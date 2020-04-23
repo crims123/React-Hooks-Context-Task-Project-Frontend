@@ -2,19 +2,16 @@ import React, { Fragment, useContext } from "react";
 import Task from "./Task";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import projectContext from "../../context/projects/projectContext";
-
-const tasks = [
-  { name: "Choose Platform", task: true },
-  { name: "Choose Colors", task: true },
-  { name: "Choose Hosting", task: true },
-];
+import taskContext from "../../context/tasks/taskContext";
 
 function TaskList() {
   const { currentProject, setDeleteProject } = useContext(projectContext);
+  const { projectTasks: tasks } = useContext(taskContext);
 
   const handleClick = () => {
     setDeleteProject(currentProject);
-  }
+  };
+  
   return (
     <Fragment>
       {currentProject ? (

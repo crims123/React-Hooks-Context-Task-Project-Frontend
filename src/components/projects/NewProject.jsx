@@ -24,7 +24,7 @@ function NewProject() {
     if (!value.name) {
       setErrorForm();
     } else {
-      setAddProject(value);
+      setAddProject({ ...value, id: Date.now() });
     }
   };
 

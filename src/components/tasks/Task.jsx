@@ -1,18 +1,18 @@
 import React from "react";
 
-function Task({ task: { name, state } }) {
+function Task({ task: { name, complete } }) {
   return (
     <li className="tarea sombra">
       <p>{name} </p>
 
       <div className="estado">
-        {state ? (
+        {complete ? (
           <button
             type="button"
             className="completo"
             // onClick={() => cambiarEstado(tarea)}
           >
-            Complet
+            Complete
           </button>
         ) : (
           <button
