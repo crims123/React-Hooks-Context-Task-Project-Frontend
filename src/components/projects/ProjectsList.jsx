@@ -1,18 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import Project from "./Project";
-
-const ProjectsListMock = [
-  {
-    name: "Virtual Store",
-  },
-  { name: "Website Design" },
-  { name: "Intranet" },
-];
+import projectContext from "../../context/projects/projectContext";
 
 function ProjectsList() {
+  const { projects } = useContext(projectContext);
   return (
     <ul className="listado-proyectos">
-      {ProjectsListMock.map((project, index) => (
+      {projects.map((project, index) => (
         <Project key={index} project={project} />
       ))}
     </ul>
