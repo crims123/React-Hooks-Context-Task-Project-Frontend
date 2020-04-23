@@ -1,20 +1,21 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import useInput from "../../hooks/useInput";
+import projectContext from "../../context/projects/projectContext";
 
 function NewProject() {
-  const [newProject, setNewProject] = useState(false);
+  const { showProject, setShowProject, setAddProject } = useContext(projectContext);
+  
   const [value, handleChange] = useInput({
     name: "",
   });
 
   const handleClickNewProject = () => {
-    setNewProject(true);
+    setShowProject(true);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
-    setNewProject(false);
+    setAddProject(value)
   };
 
   return (
@@ -27,7 +28,7 @@ function NewProject() {
         New Project
       </button>
 
-      {newProject ? (
+      {showProject ? (
         <form className="formulario-nuevo-proyecto" onSubmit={handleSubmit}>
           <input
             type="text"
