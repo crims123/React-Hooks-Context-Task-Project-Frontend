@@ -5,6 +5,7 @@ export default (state, action) => {
         ...state,
         tasks: [...state.tasks, action.payload],
         projectTasks: [...state.projectTasks, action.payload],
+        errorForm: false,
       };
 
     case "FILTER__PROJECT__TASK":
@@ -13,6 +14,12 @@ export default (state, action) => {
         projectTasks: state.tasks.filter(
           (task) => task.projectId === action.payload.id
         ),
+      };
+
+    case "VALIDATE__FORM__TASK":
+      return {
+        ...state,
+        errorForm: true,
       };
 
     default:

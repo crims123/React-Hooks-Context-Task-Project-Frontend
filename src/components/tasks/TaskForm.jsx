@@ -5,14 +5,23 @@ import taskContext from "../../context/tasks/taskContext";
 
 function TaskForm() {
   const { currentProject } = useContext(projectContext);
-  const { setAddTask } = useContext(taskContext);
+  const { setAddTask, setErrorForm, errorForm } = useContext(taskContext);
   const [value, handleChange] = useInput({
     name: "",
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAddTask({ ...value, projectId: currentProject.id, id: Date.now(), complete: false })
+    if (!value.name) {
+      setErrorForm();
+    } else {
+      setAddTask({
+        ...value,
+        projectId: currentProject.id,
+        id: Date.now(),
+        complete: false,
+      });
+    }
   };
 
   if (!currentProject) return null;
@@ -39,9 +48,9 @@ function TaskForm() {
         </div>
       </form>
 
-      {/* {errortarea ? (
-        <p className="mensaje error">El nombre de la tarea es obligatorio</p>
-      ) : null} */}
+      {errorForm ? (
+        <p className="mensaje error">Task name is required</p>
+      ) : null}
     </div>
   );
 }

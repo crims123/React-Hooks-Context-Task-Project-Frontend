@@ -6,6 +6,7 @@ function TaskStore(props) {
   const initialState = {
     tasks: [],
     projectTasks: [],
+    errorForm: false,
   };
 
   const [state, dispatch] = useReducer(taskReducer, initialState);
@@ -24,6 +25,12 @@ function TaskStore(props) {
     });
   };
 
+  const setErrorForm = () => {
+    dispatch({
+      type: "VALIDATE__FORM__TASK",
+    });
+  };
+
   return (
     <taskContext.Provider
       value={{
@@ -31,6 +38,8 @@ function TaskStore(props) {
         setAddTask,
         projectTasks: state.projectTasks,
         setProjectTasks,
+        errorForm: state.errorForm,
+        setErrorForm,
       }}
     >
       {props.children}
