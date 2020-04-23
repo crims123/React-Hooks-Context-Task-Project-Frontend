@@ -1,6 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import taskContext from "../../context/tasks/taskContext";
 
-function Task({ task: { name, complete } }) {
+function Task({ task: { name, complete, id } }) {
+  const { setDeleteTask } = useContext(taskContext);
+
+  const handleDeleTask = (id) => {
+    setDeleteTask(id);
+  };
+
   return (
     <li className="tarea sombra">
       <p>{name} </p>
@@ -37,7 +44,7 @@ function Task({ task: { name, complete } }) {
         <button
           type="button"
           className="btn btn-secundario"
-          // onClick={() => tareaEliminar(tarea._id)}
+          onClick={() => handleDeleTask(id)}
         >
           Delete
         </button>

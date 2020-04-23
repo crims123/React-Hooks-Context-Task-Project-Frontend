@@ -22,6 +22,14 @@ export default (state, action) => {
         errorForm: true,
       };
 
+    case "DELETE__TASK":
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.payload),
+        projectTasks: state.projectTasks.filter(
+          (task) => task.id !== action.payload
+        ),
+      };
     default:
       return state;
   }

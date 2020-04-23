@@ -31,6 +31,13 @@ function TaskStore(props) {
     });
   };
 
+  const setDeleteTask = (id) => {
+    dispatch({
+      type: "DELETE__TASK",
+      payload: id,
+    });
+  };
+
   return (
     <taskContext.Provider
       value={{
@@ -40,6 +47,7 @@ function TaskStore(props) {
         setProjectTasks,
         errorForm: state.errorForm,
         setErrorForm,
+        setDeleteTask,
       }}
     >
       {props.children}
