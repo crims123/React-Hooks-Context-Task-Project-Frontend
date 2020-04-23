@@ -4,6 +4,9 @@ import projectContext from "../../context/projects/projectContext";
 
 function ProjectsList() {
   const { projects } = useContext(projectContext);
+
+  if(projects.length === 0) return <p>No Projects add One</p>
+  
   return (
     <ul className="listado-proyectos">
       {projects.map((project, index) => (
