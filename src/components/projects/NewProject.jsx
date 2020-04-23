@@ -1,10 +1,16 @@
-import React, { Fragment, useState, useContext } from "react";
+import React, { Fragment, useContext } from "react";
 import useInput from "../../hooks/useInput";
 import projectContext from "../../context/projects/projectContext";
 
 function NewProject() {
-  const { showProject, setShowProject, setAddProject } = useContext(projectContext);
-  
+  const {
+    showProject,
+    setShowProject,
+    setAddProject,
+    errorForm,
+    setErrorForm,
+  } = useContext(projectContext);
+
   const [value, handleChange] = useInput({
     name: "",
   });
@@ -15,7 +21,11 @@ function NewProject() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAddProject(value)
+    if (!value.name) {
+      setErrorForm();
+    } else {
+      setAddProject(value);
+    }
   };
 
   return (
@@ -46,9 +56,9 @@ function NewProject() {
         </form>
       ) : null}
 
-      {/* {errorformulario ? (
-        <p className="mensaje error">El nombre del Proyecto es obligatorio</p>
-      ) : null} */}
+      {errorForm ? (
+        <p className="mensaje error">The Project name is mandatory</p>
+      ) : null}
     </Fragment>
   );
 }

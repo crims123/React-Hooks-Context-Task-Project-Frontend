@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 import Task from "./Task";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
+import projectContext from "../../context/projects/projectContext";
 
 const tasks = [
   { name: "Choose Platform", task: true },
@@ -9,33 +10,43 @@ const tasks = [
 ];
 
 function TaskList() {
+  const { currentProject, setDeleteProject } = useContext(projectContext);
+
+  const handleClick = () => {
+    setDeleteProject(currentProject);
+  }
   return (
     <Fragment>
-      <h2>Project: Virtual Store </h2>
+      {currentProject ? (
+        <Fragment>
+          <h2>Project: {currentProject.name}</h2>
+          <ul className="listado-tareas">
+            {tasks.length === 0 ? (
+              <li className="tarea">
+                <p>No tasks</p>
+              </li>
+            ) : (
+              <TransitionGroup>
+                {tasks.map((task, index) => (
+                  <CSSTransition key={index} timeout={200} classNames="tarea">
+                    <Task task={task} />
+                  </CSSTransition>
+                ))}
+              </TransitionGroup>
+            )}
+          </ul>
 
-      <ul className="listado-tareas">
-        {tasks.length === 0 ? (
-          <li className="tarea">
-            <p>No tasks</p>
-          </li>
-        ) : (
-          <TransitionGroup>
-            {tasks.map((task, index) => (
-              <CSSTransition key={index} timeout={200} classNames="tarea">
-                <Task task={task} />
-              </CSSTransition>
-            ))}
-          </TransitionGroup>
-        )}
-      </ul>
-
-      <button
-        type="button"
-        className="btn btn-eliminar"
-        // onClick={onClickEliminar}
-      >
-        Delete Project &times;
-      </button>
+          <button
+            type="button"
+            className="btn btn-eliminar"
+            onClick={handleClick}
+          >
+            Delete Project &times;
+          </button>
+        </Fragment>
+      ) : (
+        <h2>Select Project</h2>
+      )}
     </Fragment>
   );
 }

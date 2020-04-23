@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import useInput from "../../hooks/useInput";
+import projectContext from "../../context/projects/projectContext";
 
 function TaskForm() {
+  const { currentProject } = useContext(projectContext);
   const [value, handleChange] = useInput({
     name: "",
   });
@@ -10,6 +12,9 @@ function TaskForm() {
     e.preventDefault();
     console.log(value);
   };
+
+  if (!currentProject) return null;
+
   return (
     <div className="formulario">
       <form onSubmit={handleSubmit}>

@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import projectContext from "../../context/projects/projectContext";
 
-function Project({ project: { name } }) {
+function Project({ project, project: { name } }) {
+  const { setCurrentProject } = useContext(projectContext);
+
+  const handleClick = () => {
+    setCurrentProject(project);
+  };
+
   return (
     <li>
-      <button type="button" className="btn btn-blank">
+      <button onClick={handleClick} type="button" className="btn btn-blank">
         {name}
       </button>
     </li>
