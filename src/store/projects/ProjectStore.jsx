@@ -1,6 +1,13 @@
 import React, { useReducer } from "react";
 import projectContext from "../../context/projects/projectContext";
 import projectReducer from "../../reducers/projects/projectReducer";
+import {
+  SHOW__PROJECT,
+  ADD__PROJECT,
+  VALIDATE__FORM,
+  CURRENT__PROJECT,
+  DELETE__PROJECT,
+} from "../../types";
 
 function ProjectStore(props) {
   const initialState = {
@@ -14,34 +21,34 @@ function ProjectStore(props) {
 
   const setShowProject = (value) => {
     dispatch({
-      type: "SHOW__PROJECT",
+      type: SHOW__PROJECT,
       payload: value,
     });
   };
 
   const setAddProject = (project) => {
     dispatch({
-      type: "ADD__PROJECT",
+      type: ADD__PROJECT,
       payload: project,
     });
   };
 
   const setErrorForm = () => {
     dispatch({
-      type: "VALIDATE__FORM",
+      type: VALIDATE__FORM,
     });
   };
 
   const setCurrentProject = (project) => {
     dispatch({
-      type: "CURRENT__PROJECT",
+      type: CURRENT__PROJECT,
       payload: project,
     });
   };
 
   const setDeleteProject = (project) => {
     dispatch({
-      type: "DELETE__PROJECT",
+      type: DELETE__PROJECT,
       payload: project,
     });
   };
