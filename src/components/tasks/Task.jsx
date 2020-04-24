@@ -1,11 +1,16 @@
 import React, { useContext } from "react";
 import taskContext from "../../context/tasks/taskContext";
 
-function Task({ task: { name, complete, id } }) {
-  const { setDeleteTask } = useContext(taskContext);
+function Task({task, task: { name, state, id } }) {
+  const { setDeleteTask, setStateTask } = useContext(taskContext);
 
   const handleDeleTask = (id) => {
     setDeleteTask(id);
+  };
+
+  const handleTaskState = () => {
+    const newTask = { ...task, state: !task.state}
+    setStateTask(newTask);
   };
 
   return (
@@ -13,11 +18,11 @@ function Task({ task: { name, complete, id } }) {
       <p>{name} </p>
 
       <div className="estado">
-        {complete ? (
+        {state ? (
           <button
             type="button"
             className="completo"
-            // onClick={() => cambiarEstado(tarea)}
+            onClick={handleTaskState}
           >
             Complete
           </button>
@@ -25,7 +30,7 @@ function Task({ task: { name, complete, id } }) {
           <button
             type="button"
             className="incompleto"
-            // onClick={() => cambiarEstado(tarea)}
+            onClick={handleTaskState}
           >
             Incomplete
           </button>

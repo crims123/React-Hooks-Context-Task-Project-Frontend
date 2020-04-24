@@ -38,6 +38,13 @@ function TaskStore(props) {
     });
   };
 
+  const setStateTask = (id) => {
+    dispatch({
+      type: "CHANGE_STATE__TASK",
+      payload: state,
+    });
+  };
+
   return (
     <taskContext.Provider
       value={{
@@ -48,6 +55,7 @@ function TaskStore(props) {
         errorForm: state.errorForm,
         setErrorForm,
         setDeleteTask,
+        setStateTask,
       }}
     >
       {props.children}

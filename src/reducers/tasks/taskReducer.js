@@ -30,6 +30,13 @@ export default (state, action) => {
           (task) => task.id !== action.payload
         ),
       };
+
+      case "CHANGE_STATE__TASK":
+      return {
+        ...state,
+        tasks: [...state.tasks, action.payload],
+        projectTasks: [...state.projectTasks, action.payload ]
+      };
     default:
       return state;
   }

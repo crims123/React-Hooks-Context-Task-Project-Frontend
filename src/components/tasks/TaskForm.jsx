@@ -19,7 +19,7 @@ function TaskForm() {
         ...value,
         projectId: currentProject.id,
         id: Date.now(),
-        complete: false,
+        state: false,
       });
     }
   };
