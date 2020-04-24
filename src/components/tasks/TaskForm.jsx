@@ -5,7 +5,13 @@ import taskContext from "../../context/tasks/taskContext";
 
 function TaskForm() {
   const { currentProject } = useContext(projectContext);
-  const { setAddTask, setErrorForm, errorForm } = useContext(taskContext);
+  const {
+    setAddTask,
+    setErrorForm,
+    errorForm,
+    selectedTask,
+    setModifyTask,
+  } = useContext(taskContext);
   const [value, handleChange] = useInput({
     name: "",
   });
@@ -14,6 +20,8 @@ function TaskForm() {
     e.preventDefault();
     if (!value.name) {
       setErrorForm();
+    } else if (selectedTask) {
+      setModifyTask({ ...selectedTask, ...value });
     } else {
       setAddTask({
         ...value,
@@ -22,6 +30,7 @@ function TaskForm() {
         state: false,
       });
     }
+    e.target.reset();
   };
 
   if (!currentProject) return null;
@@ -33,7 +42,7 @@ function TaskForm() {
           <input
             type="text"
             className="input-text"
-            placeholder="Task Name..."
+            placeholder={selectedTask ? selectedTask.name : "Task Name..."}
             name="name"
             onChange={handleChange}
           />
@@ -43,7 +52,7 @@ function TaskForm() {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            // value={tareaseleccionada ? "Editar Tarea" : "Agregar Tarea"}
+            value={selectedTask ? "Edit Task" : "Add Task"}
           />
         </div>
       </form>

@@ -7,6 +7,7 @@ function TaskStore(props) {
     tasks: [],
     projectTasks: [],
     errorForm: false,
+    selectedTask: null,
   };
 
   const [state, dispatch] = useReducer(taskReducer, initialState);
@@ -45,6 +46,20 @@ function TaskStore(props) {
     });
   };
 
+  const setSelectedTask = (task) => {
+    dispatch({
+      type: "CHANGE__SELECTED__TASK",
+      payload: task,
+    });
+  };
+
+  const setModifyTask = (task) => {
+    dispatch({
+      type: "MODIFY__SELECTED__TASK",
+      payload: task,
+    });
+  };
+
   return (
     <taskContext.Provider
       value={{
@@ -56,6 +71,9 @@ function TaskStore(props) {
         setErrorForm,
         setDeleteTask,
         setStateTask,
+        selectedTask: state.selectedTask,
+        setSelectedTask,
+        setModifyTask,
       }}
     >
       {props.children}

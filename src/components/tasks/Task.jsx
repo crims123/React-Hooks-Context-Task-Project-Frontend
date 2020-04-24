@@ -1,15 +1,21 @@
 import React, { useContext } from "react";
 import taskContext from "../../context/tasks/taskContext";
 
-function Task({task, task: { name, state, id } }) {
-  const { setDeleteTask, setStateTask } = useContext(taskContext);
+function Task({ task, task: { name, state, id } }) {
+  const { setDeleteTask, setStateTask, setSelectedTask } = useContext(
+    taskContext
+  );
+
+  const handleEditTask = () => {
+    setSelectedTask(task);
+  };
 
   const handleDeleTask = (id) => {
     setDeleteTask(id);
   };
 
   const handleTaskState = () => {
-    const newTask = { ...task, state: !task.state}
+    const newTask = { ...task, state: !task.state };
     setStateTask(newTask);
   };
 
@@ -19,11 +25,7 @@ function Task({task, task: { name, state, id } }) {
 
       <div className="estado">
         {state ? (
-          <button
-            type="button"
-            className="completo"
-            onClick={handleTaskState}
-          >
+          <button type="button" className="completo" onClick={handleTaskState}>
             Complete
           </button>
         ) : (
@@ -41,7 +43,7 @@ function Task({task, task: { name, state, id } }) {
         <button
           type="button"
           className="btn btn-primario"
-          // onClick={() => seleccionarTarea(tarea) }
+          onClick={handleEditTask}
         >
           Edit
         </button>

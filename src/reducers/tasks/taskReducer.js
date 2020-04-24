@@ -4,6 +4,8 @@ import {
   VALIDATE__FORM__TASK,
   DELETE__TASK,
   CHANGE__STATE__TASK,
+  CHANGE__SELECTED__TASK,
+  MODIFY__SELECTED__TASK,
 } from "../../types";
 
 export default (state, action) => {
@@ -49,6 +51,25 @@ export default (state, action) => {
           task.id === action.payload.id ? action.payload : task
         ),
       };
+
+    case CHANGE__SELECTED__TASK:
+      return {
+        ...state,
+        selectedTask: action.payload,
+      };
+
+    case MODIFY__SELECTED__TASK:
+      return {
+        ...state,
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.id ? action.payload : task
+        ),
+        projectTasks: state.projectTasks.map((task) =>
+          task.id === action.payload.id ? action.payload : task
+        ),
+        selectedTask: null,
+      };
+      
     default:
       return state;
   }
