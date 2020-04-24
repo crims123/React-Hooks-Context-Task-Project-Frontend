@@ -42,8 +42,12 @@ export default (state, action) => {
     case CHANGE__STATE__TASK:
       return {
         ...state,
-        tasks: [...state.tasks, action.payload],
-        projectTasks: [...state.projectTasks, action.payload],
+        tasks: state.tasks.map((task) =>
+          task.id === action.payload.id ? action.payload : task
+        ),
+        projectTasks: state.projectTasks.map((task) =>
+          task.id === action.payload.id ? action.payload : task
+        ),
       };
     default:
       return state;

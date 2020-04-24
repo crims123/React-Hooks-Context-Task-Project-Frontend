@@ -40,8 +40,8 @@ function TaskStore(props) {
 
   const setStateTask = (id) => {
     dispatch({
-      type: "CHANGE_STATE__TASK",
-      payload: state,
+      type: "CHANGE__STATE__TASK",
+      payload: id,
     });
   };
 
