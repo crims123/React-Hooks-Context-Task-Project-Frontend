@@ -1,6 +1,14 @@
+import {
+  ADD__TASK,
+  FILTER__PROJECT__TASK,
+  VALIDATE__FORM__TASK,
+  DELETE__TASK,
+  CHANGE__STATE__TASK,
+} from "../../types";
+
 export default (state, action) => {
   switch (action.type) {
-    case "ADD__TASK":
+    case ADD__TASK:
       return {
         ...state,
         tasks: [...state.tasks, action.payload],
@@ -8,7 +16,7 @@ export default (state, action) => {
         errorForm: false,
       };
 
-    case "FILTER__PROJECT__TASK":
+    case FILTER__PROJECT__TASK:
       return {
         ...state,
         projectTasks: state.tasks.filter(
@@ -16,13 +24,13 @@ export default (state, action) => {
         ),
       };
 
-    case "VALIDATE__FORM__TASK":
+    case VALIDATE__FORM__TASK:
       return {
         ...state,
         errorForm: true,
       };
 
-    case "DELETE__TASK":
+    case DELETE__TASK:
       return {
         ...state,
         tasks: state.tasks.filter((task) => task.id !== action.payload),
@@ -31,11 +39,11 @@ export default (state, action) => {
         ),
       };
 
-      case "CHANGE_STATE__TASK":
+    case CHANGE__STATE__TASK:
       return {
         ...state,
         tasks: [...state.tasks, action.payload],
-        projectTasks: [...state.projectTasks, action.payload ]
+        projectTasks: [...state.projectTasks, action.payload],
       };
     default:
       return state;
