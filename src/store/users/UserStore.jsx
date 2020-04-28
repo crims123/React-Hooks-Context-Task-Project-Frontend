@@ -126,6 +126,7 @@ function UserStore(props) {
         setUser,
         authenticated: state.authenticated,
         setAuthenticated,
+        getUser,
       }}
     >
       {props.children}
