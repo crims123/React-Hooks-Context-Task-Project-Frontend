@@ -70,6 +70,7 @@ function UserStore(props) {
         setAlert,
         user: state.user,
         setUser,
+        authenticated: state.authenticated
       }}
     >
       {props.children}

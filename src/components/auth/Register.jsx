@@ -1,11 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useInput from '../../hooks/useInput';
 import UserContext from '../../context/users/userContext';
 
-function Register() {
-  const { alert, setAlert, setUser } = useContext(UserContext);
-  console.log(process.env.REACT_APP_BACKEND_URL)
+function Register(props) {
+  const { alert, setAlert, setUser, authenticated } = useContext(UserContext);
 
   const [value, handleChange] = useInput({
     name: '',
@@ -13,6 +12,12 @@ function Register() {
     password: '',
     confirm: '',
   });
+
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push('/projects');
+    }
+  }, [authenticated, props.history]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -37,7 +42,7 @@ function Register() {
       setAlert('Passwords are not the same', 'alerta-error');
       return;
     }
-    setUser({name, email, password});
+    setUser({ name, email, password });
   };
 
   return (
