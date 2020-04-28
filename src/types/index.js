@@ -11,3 +11,6 @@ export const DELETE__TASK = "DELETE__TASK";
 export const CHANGE__STATE__TASK = "CHANGE__STATE__TASK";
 export const CHANGE__SELECTED__TASK = "CHANGE__SELECTED__TASK";
 export const MODIFY__SELECTED__TASK = "MODIFY__SELECTED__TASK";
+
+export const SHOW__ALERT = "SHOW__ALERT";
+export const HIDE__ALERT = "HIDE__ALERT";

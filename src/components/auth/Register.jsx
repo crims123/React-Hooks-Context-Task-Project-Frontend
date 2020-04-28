@@ -1,22 +1,48 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import useInput from "../../hooks/useInput";
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+import useInput from '../../hooks/useInput';
+import UserContext from '../../context/users/userContext';
 
 function Register() {
+  const { alert, setAlert } = useContext(UserContext);
+
   const [value, handleChange] = useInput({
-    name: "",
-    email: "",
-    password: "",
-    confirm: "",
+    name: '',
+    email: '',
+    password: '',
+    confirm: '',
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    const { name, email, password, confirm } = value;
+
+    if (
+      name.trim() === '' ||
+      email.trim() === '' ||
+      password.trim() === '' ||
+      confirm.trim() === ''
+    ) {
+      setAlert('All fields are required', 'alerta-error');
+      return;
+    }
+
+    if (password.length < 6) {
+      setAlert('The password must be at least 6 characters', 'alerta-error');
+      return;
+    }
+
+    if (password !== confirm) {
+      setAlert('Passwords are not the same', 'alerta-error');
+      return;
+    }
   };
+
   return (
     <div className="form-usuario">
-      {/* { alerta ? ( <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div> )  : null } */}
+      {alert ? (
+        <div className={`alerta ${alert.category}`}> {alert.msg} </div>
+      ) : null}
       <div className="contenedor-form sombra-dark">
         <h1>Register account</h1>
 
@@ -74,7 +100,7 @@ function Register() {
           </div>
         </form>
 
-        <Link to={"/"} className="enlace-cuenta">
+        <Link to={'/'} className="enlace-cuenta">
           Return to Log In
         </Link>
       </div>
