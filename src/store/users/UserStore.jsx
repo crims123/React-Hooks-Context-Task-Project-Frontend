@@ -2,11 +2,14 @@ import React, { useReducer } from 'react';
 import userContext from '../../context/users/userContext';
 import userReducer from '../../reducers/users/userReducer';
 import axiosClient from '../../config/api';
+import tokenAuth from '../../config/auth';
 import {
   SHOW__ALERT,
   HIDE__ALERT,
   SUCCESS__REGISTER,
   ERROR__REGISTER,
+  GET__USER,
+  LOGIN__ERROR,
 } from '../../types';
 
 function UserStore(props) {
@@ -44,6 +47,7 @@ function UserStore(props) {
         type: SUCCESS__REGISTER,
         payload: newUser.data.data.token,
       });
+      getUser();
     } catch (error) {
       const alert = {
         msg: error.response.data.message,
@@ -63,6 +67,26 @@ function UserStore(props) {
     }
   };
 
+  const getUser = async () => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      tokenAuth(token);
+    }
+    try {
+      const data = await axiosClient.get('/api/users');
+      
+      dispatch({
+        type: GET__USER,
+        payload: data.data.user,
+      });
+    } catch (error) {
+      dispatch({
+        type: LOGIN__ERROR,
+        payload: error,
+      });
+    }
+  };
+
   return (
     <userContext.Provider
       value={{
@@ -70,7 +94,7 @@ function UserStore(props) {
         setAlert,
         user: state.user,
         setUser,
-        authenticated: state.authenticated
+        authenticated: state.authenticated,
       }}
     >
       {props.children}

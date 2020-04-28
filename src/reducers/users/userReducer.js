@@ -3,6 +3,8 @@ import {
   HIDE__ALERT,
   SUCCESS__REGISTER,
   ERROR__REGISTER,
+  GET__USER,
+  LOGIN__ERROR,
 } from '../../types';
 
 export default (state, action) => {
@@ -11,6 +13,7 @@ export default (state, action) => {
       return {
         alert: action.payload,
       };
+
     case HIDE__ALERT:
       return {
         alert: null,
@@ -22,12 +25,26 @@ export default (state, action) => {
         ...state,
         authenticated: true,
       };
+
     case ERROR__REGISTER:
       return {
         ...state,
         alert: action.payload,
         token: null,
       };
+
+    case GET__USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
+
+    case LOGIN__ERROR:
+      return {
+        ...state,
+        user: action.payload,
+      };
+
     default:
       return state;
   }

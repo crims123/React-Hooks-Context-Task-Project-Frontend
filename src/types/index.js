@@ -17,3 +17,5 @@ export const HIDE__ALERT = "HIDE__ALERT";
 
 export const SUCCESS__REGISTER = "SUCCESS__REGISTER";
 export const ERROR__REGISTER = "ERROR__REGISTER";
+export const GET__USER = "GET__USER";
+export const LOGIN__ERROR = "LOGIN__ERROR";
