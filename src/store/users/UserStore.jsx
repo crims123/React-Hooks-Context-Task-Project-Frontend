@@ -10,6 +10,7 @@ import {
   ERROR__REGISTER,
   GET__USER,
   LOGIN__ERROR,
+  LOGIN__USER,
 } from '../../types';
 
 function UserStore(props) {
@@ -73,17 +74,46 @@ function UserStore(props) {
       tokenAuth(token);
     }
     try {
-      const data = await axiosClient.get('/api/users');
-      
+      const user = await axiosClient.get('/api/users');
+
       dispatch({
         type: GET__USER,
-        payload: data.data.user,
+        payload: user.data.user,
       });
     } catch (error) {
       dispatch({
         type: LOGIN__ERROR,
         payload: error,
       });
+    }
+  };
+
+  const setAuthenticated = async (user) => {
+    try {
+      const authenticated = await axiosClient.post('/api/users/login', user);
+
+      dispatch({
+        type: LOGIN__USER,
+        payload: authenticated.data.data.token,
+      });
+
+      getUser();
+    } catch (error) {
+      const alert = {
+        msg: error.response.data.message,
+        category: 'alerta-error',
+      };
+
+      dispatch({
+        type: ERROR__REGISTER,
+        payload: alert,
+      });
+
+      setTimeout(() => {
+        dispatch({
+          type: HIDE__ALERT,
+        });
+      }, 5000);
     }
   };
 
@@ -95,6 +125,7 @@ function UserStore(props) {
         user: state.user,
         setUser,
         authenticated: state.authenticated,
+        setAuthenticated,
       }}
     >
       {props.children}

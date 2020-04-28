@@ -5,6 +5,7 @@ import {
   ERROR__REGISTER,
   GET__USER,
   LOGIN__ERROR,
+  LOGIN__USER
 } from '../../types';
 
 export default (state, action) => {
@@ -44,6 +45,14 @@ export default (state, action) => {
         ...state,
         user: action.payload,
       };
+
+      case LOGIN__USER:
+        localStorage.setItem('token', action.payload);
+        return {
+          ...state,
+          authenticated: true,
+          token: action.payload
+        };
 
     default:
       return state;

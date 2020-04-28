@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useInput from "../../hooks/useInput";
+import UserContext from '../../context/users/userContext';
 
-function Login() {
+function Login(props) {
+  const { authenticated, setAuthenticated, alert } = useContext(UserContext);
   const [value, handleChange] = useInput({ email: "", password: "" });
+
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push('/projects');
+    }
+  }, [authenticated, props.history]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(value);
+    setAuthenticated(value)
   };
 
   return (
     <div className="form-usuario">
-      {/* { alerta ? ( <div className={`alerta ${alerta.categoria}`}> {alerta.msg} </div> )  : null } */}
+      {alert ? ( <div className={`alerta ${alert.category}`}> {alert.msg} </div> )  : null }}
 
       <div className="contenedor-form sombra-dark">
         <h1>Log in</h1>
