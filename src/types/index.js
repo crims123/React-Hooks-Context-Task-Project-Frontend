@@ -14,3 +14,6 @@ export const MODIFY__SELECTED__TASK = "MODIFY__SELECTED__TASK";
 
 export const SHOW__ALERT = "SHOW__ALERT";
 export const HIDE__ALERT = "HIDE__ALERT";
+
+export const SUCCESS__REGISTER = "SUCCESS__REGISTER";
+export const ERROR__REGISTER = "ERROR__REGISTER";

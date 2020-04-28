@@ -4,7 +4,8 @@ import useInput from '../../hooks/useInput';
 import UserContext from '../../context/users/userContext';
 
 function Register() {
-  const { alert, setAlert } = useContext(UserContext);
+  const { alert, setAlert, setUser } = useContext(UserContext);
+  console.log(process.env.REACT_APP_BACKEND_URL)
 
   const [value, handleChange] = useInput({
     name: '',
@@ -36,6 +37,7 @@ function Register() {
       setAlert('Passwords are not the same', 'alerta-error');
       return;
     }
+    setUser({name, email, password});
   };
 
   return (
