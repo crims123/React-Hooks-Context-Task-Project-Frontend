@@ -6,10 +6,11 @@ import TaskList from "../tasks/TaskList";
 import UserContext from '../../context/users/userContext';
  
 function Projects() {
-  const { getUser } = useContext(UserContext);
+  const { setGetAuthenticatedUser } = useContext(UserContext);
 
   useEffect(() => {
-    getUser();
+    setGetAuthenticatedUser();
+    // eslint-disable-next-line
   }, [])
 
   return (

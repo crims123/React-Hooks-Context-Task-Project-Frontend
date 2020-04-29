@@ -46,6 +46,7 @@ export default (state, action) => {
       return {
         ...state,
         user: action.payload,
+        loadLogin: true,
       };
 
       case LOGIN__USER:
@@ -53,7 +54,7 @@ export default (state, action) => {
         return {
           ...state,
           authenticated: true,
-          token: action.payload
+          token: action.payload,
         };
 
         case LOGOUT__USER:
@@ -62,6 +63,7 @@ export default (state, action) => {
           authenticated: false,
           token: null,
           user: null,
+          loadLogin: true,
         };
 
     default:

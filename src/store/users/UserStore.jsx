@@ -18,6 +18,7 @@ function UserStore(props) {
   const initialState = {
     token: localStorage.getItem('token'),
     authenticated: null,
+    loadLogin: false,
     alert: null,
     user: null,
     message: null,
@@ -49,7 +50,7 @@ function UserStore(props) {
         type: SUCCESS__REGISTER,
         payload: newUser.data.data.token,
       });
-      getUser();
+      setGetAuthenticatedUser();
     } catch (error) {
       const alert = {
         msg: error.response.data.message,
@@ -69,7 +70,7 @@ function UserStore(props) {
     }
   };
 
-  const getUser = async () => {
+  const setGetAuthenticatedUser = async () => {
     const token = localStorage.getItem('token');
     if (token) {
       tokenAuth(token);
@@ -98,7 +99,7 @@ function UserStore(props) {
         payload: authenticated.data.data.token,
       });
 
-      getUser();
+      setGetAuthenticatedUser();
     } catch (error) {
       const alert = {
         msg: error.response.data.message,
@@ -134,8 +135,9 @@ function UserStore(props) {
         user: state.user,
         setUser,
         authenticated: state.authenticated,
+        loadLogin: state.loadLogin,
         setAuthenticated,
-        getUser,
+        setGetAuthenticatedUser,
         setLogOut,
       }}
     >
