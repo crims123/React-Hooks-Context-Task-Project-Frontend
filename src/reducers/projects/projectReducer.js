@@ -1,10 +1,11 @@
 import {
   SHOW__PROJECT,
   ADD__PROJECT,
+  ADD__PROJECT__ERROR,
   VALIDATE__FORM,
   CURRENT__PROJECT,
   DELETE__PROJECT,
-} from "../../types";
+} from '../../types';
 
 export default (state, action) => {
   switch (action.type) {
@@ -13,6 +14,7 @@ export default (state, action) => {
         ...state,
         showProject: action.payload,
       };
+
     case ADD__PROJECT:
       return {
         ...state,
@@ -20,16 +22,25 @@ export default (state, action) => {
         showProject: false,
         errorForm: false,
       };
+
+    case ADD__PROJECT__ERROR:
+      return {
+        ...state,
+        errorForm: { msg: action.payload },
+      };
+
     case VALIDATE__FORM:
       return {
         ...state,
-        errorForm: true,
+        errorForm: { msg: action.payload },
       };
+
     case CURRENT__PROJECT:
       return {
         ...state,
         currentProject: action.payload,
       };
+
     case DELETE__PROJECT:
       return {
         ...state,
@@ -38,6 +49,7 @@ export default (state, action) => {
         ),
         currentProject: null,
       };
+
     default:
       return state;
   }

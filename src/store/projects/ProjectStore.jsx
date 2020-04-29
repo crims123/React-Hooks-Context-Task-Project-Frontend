@@ -1,13 +1,15 @@
-import React, { useReducer } from "react";
-import projectContext from "../../context/projects/projectContext";
-import projectReducer from "../../reducers/projects/projectReducer";
+import React, { useReducer } from 'react';
+import projectContext from '../../context/projects/projectContext';
+import projectReducer from '../../reducers/projects/projectReducer';
+import axiosClient from '../../config/api';
 import {
   SHOW__PROJECT,
   ADD__PROJECT,
+  ADD__PROJECT__ERROR,
   VALIDATE__FORM,
   CURRENT__PROJECT,
   DELETE__PROJECT,
-} from "../../types";
+} from '../../types';
 
 function ProjectStore(props) {
   const initialState = {
@@ -26,16 +28,26 @@ function ProjectStore(props) {
     });
   };
 
-  const setAddProject = (project) => {
-    dispatch({
-      type: ADD__PROJECT,
-      payload: project,
-    });
+  const setAddProject = async (values) => {
+    try {
+      const project = await axiosClient.post('/api/projects', values);
+
+      dispatch({
+        type: ADD__PROJECT,
+        payload: project.data.data.project,
+      });
+    } catch (error) {
+      dispatch({
+        type: ADD__PROJECT__ERROR,
+        payload: error,
+      });
+    }
   };
 
-  const setErrorForm = () => {
+  const setErrorForm = (msg) => {
     dispatch({
       type: VALIDATE__FORM,
+      payload: msg,
     });
   };
 

@@ -1,6 +1,6 @@
-import React, { Fragment, useContext } from "react";
-import useInput from "../../hooks/useInput";
-import projectContext from "../../context/projects/projectContext";
+import React, { Fragment, useContext } from 'react';
+import useInput from '../../hooks/useInput';
+import projectContext from '../../context/projects/projectContext';
 
 function NewProject() {
   const {
@@ -11,8 +11,8 @@ function NewProject() {
     setErrorForm,
   } = useContext(projectContext);
 
-  const [value, handleChange] = useInput({
-    name: "",
+  const [value, handleChange, setValues] = useInput({
+    name: '',
   });
 
   const handleClickNewProject = () => {
@@ -22,9 +22,11 @@ function NewProject() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!value.name) {
-      setErrorForm();
+      setErrorForm('The Project name is mandatory');
     } else {
-      setAddProject({ ...value, id: Date.now() });
+      setAddProject({ ...value });
+      e.target.reset();
+      setValues({ name: '' });
     }
   };
 
@@ -56,9 +58,7 @@ function NewProject() {
         </form>
       ) : null}
 
-      {errorForm ? (
-        <p className="mensaje error">The Project name is mandatory</p>
-      ) : null}
+      {errorForm ? <p className="mensaje error">{errorForm.msg}</p> : null}
     </Fragment>
   );
 }
