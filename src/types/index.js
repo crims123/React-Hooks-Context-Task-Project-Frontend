@@ -18,8 +18,9 @@ export const HIDE__ALERT = "HIDE__ALERT";
 export const SUCCESS__REGISTER = "SUCCESS__REGISTER";
 export const ERROR__REGISTER = "ERROR__REGISTER";
 
-export const GET__USER = "GET__USER";
+export const GET__AUTHENTICATED__USER = "GET__AUTHENTICATED__USER";
 
-export const LOGIN__ERROR = "LOGIN__ERROR";
+export const GET__AUTHENTICATED__USER__ERROR = "GET__AUTHENTICATED__USER__ERROR";
 export const LOGIN__USER = "LOGIN__USER";
+export const LOGIN__USER__ERROR = "LOGIN__USER__ERROR";
 export const LOGOUT__USER = "LOGOUT__USER";

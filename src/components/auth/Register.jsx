@@ -4,7 +4,7 @@ import useInput from '../../hooks/useInput';
 import UserContext from '../../context/users/userContext';
 
 function Register(props) {
-  const { alert, setAlert, setUser, authenticated } = useContext(UserContext);
+  const { alert, setAddAlert, setAddUser, authenticated } = useContext(UserContext);
 
   const [value, handleChange] = useInput({
     name: '',
@@ -29,20 +29,20 @@ function Register(props) {
       password.trim() === '' ||
       confirm.trim() === ''
     ) {
-      setAlert('All fields are required', 'alerta-error');
+      setAddAlert('All fields are required', 'alerta-error');
       return;
     }
 
     if (password.length < 6) {
-      setAlert('The password must be at least 6 characters', 'alerta-error');
+      setAddAlert('The password must be at least 6 characters', 'alerta-error');
       return;
     }
 
     if (password !== confirm) {
-      setAlert('Passwords are not the same', 'alerta-error');
+      setAddAlert('Passwords are not the same', 'alerta-error');
       return;
     }
-    setUser({ name, email, password });
+    setAddUser({ name, email, password });
   };
 
   return (

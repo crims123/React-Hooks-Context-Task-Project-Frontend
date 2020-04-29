@@ -3,10 +3,11 @@ import {
   HIDE__ALERT,
   SUCCESS__REGISTER,
   ERROR__REGISTER,
-  GET__USER,
-  LOGIN__ERROR,
+  GET__AUTHENTICATED__USER,
+  GET__AUTHENTICATED__USER__ERROR,
   LOGIN__USER,
-  LOGOUT__USER
+  LOGIN__USER__ERROR,
+  LOGOUT__USER,
 } from '../../types';
 
 export default (state, action) => {
@@ -35,36 +36,43 @@ export default (state, action) => {
         token: null,
       };
 
-    case GET__USER:
+    case GET__AUTHENTICATED__USER:
       return {
         ...state,
         user: action.payload,
         authenticated: true,
       };
 
-    case LOGIN__ERROR:
+    case GET__AUTHENTICATED__USER__ERROR:
       return {
         ...state,
         user: action.payload,
         loadLogin: true,
       };
 
-      case LOGIN__USER:
-        localStorage.setItem('token', action.payload);
-        return {
-          ...state,
-          authenticated: true,
-          token: action.payload,
-        };
+    case LOGIN__USER:
+      localStorage.setItem('token', action.payload);
+      return {
+        ...state,
+        authenticated: true,
+        token: action.payload,
+      };
 
-        case LOGOUT__USER:
-        return {
-          ...state,
-          authenticated: false,
-          token: null,
-          user: null,
-          loadLogin: true,
-        };
+    case LOGIN__USER__ERROR:
+      return {
+        ...state,
+        alert: action.payload,
+        token: null,
+      };
+
+    case LOGOUT__USER:
+      return {
+        ...state,
+        authenticated: false,
+        token: null,
+        user: null,
+        loadLogin: true,
+      };
 
     default:
       return state;

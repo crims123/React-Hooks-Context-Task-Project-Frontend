@@ -8,9 +8,10 @@ import {
   HIDE__ALERT,
   SUCCESS__REGISTER,
   ERROR__REGISTER,
-  GET__USER,
-  LOGIN__ERROR,
+  GET__AUTHENTICATED__USER,
+  GET__AUTHENTICATED__USER__ERROR,
   LOGIN__USER,
+  LOGIN__USER__ERROR,
   LOGOUT__USER,
 } from '../../types';
 
@@ -26,7 +27,7 @@ function UserStore(props) {
 
   const [state, dispatch] = useReducer(userReducer, initialState);
 
-  const setAlert = (msg, category) => {
+  const setAddAlert = (msg, category) => {
     dispatch({
       type: SHOW__ALERT,
       payload: {
@@ -42,7 +43,7 @@ function UserStore(props) {
     }, 5000);
   };
 
-  const setUser = async (user) => {
+  const setAddUser = async (user) => {
     try {
       const newUser = await axiosClient.post('/api/users', user);
 
@@ -79,18 +80,18 @@ function UserStore(props) {
       const user = await axiosClient.get('/api/users');
 
       dispatch({
-        type: GET__USER,
+        type: GET__AUTHENTICATED__USER,
         payload: user.data.user,
       });
     } catch (error) {
       dispatch({
-        type: LOGIN__ERROR,
+        type: GET__AUTHENTICATED__USER__ERROR,
         payload: error,
       });
     }
   };
 
-  const setAuthenticated = async (user) => {
+  const setGetLoginToken = async (user) => {
     try {
       const authenticated = await axiosClient.post('/api/users/login', user);
 
@@ -107,7 +108,7 @@ function UserStore(props) {
       };
 
       dispatch({
-        type: ERROR__REGISTER,
+        type: LOGIN__USER__ERROR,
         payload: alert,
       });
 
@@ -131,13 +132,13 @@ function UserStore(props) {
     <userContext.Provider
       value={{
         alert: state.alert,
-        setAlert,
+        setAddAlert,
         user: state.user,
-        setUser,
-        authenticated: state.authenticated,
-        loadLogin: state.loadLogin,
-        setAuthenticated,
         setGetAuthenticatedUser,
+        authenticated: state.authenticated,
+        setGetLoginToken,
+        loadLogin: state.loadLogin,
+        setAddUser,
         setLogOut,
       }}
     >

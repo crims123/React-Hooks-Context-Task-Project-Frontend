@@ -4,7 +4,7 @@ import useInput from "../../hooks/useInput";
 import UserContext from '../../context/users/userContext';
 
 function Login(props) {
-  const { authenticated, setAuthenticated, alert } = useContext(UserContext);
+  const { authenticated, setGetLoginToken, alert } = useContext(UserContext);
   const [value, handleChange] = useInput({ email: "", password: "" });
 
   useEffect(() => {
@@ -15,7 +15,7 @@ function Login(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setAuthenticated(value)
+    setGetLoginToken(value)
   };
 
   return (
