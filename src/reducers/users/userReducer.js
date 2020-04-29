@@ -5,7 +5,8 @@ import {
   ERROR__REGISTER,
   GET__USER,
   LOGIN__ERROR,
-  LOGIN__USER
+  LOGIN__USER,
+  LOGOUT__USER
 } from '../../types';
 
 export default (state, action) => {
@@ -53,6 +54,14 @@ export default (state, action) => {
           ...state,
           authenticated: true,
           token: action.payload
+        };
+
+        case LOGOUT__USER:
+        return {
+          ...state,
+          authenticated: false,
+          token: null,
+          user: null,
         };
 
     default:

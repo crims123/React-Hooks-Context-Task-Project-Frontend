@@ -1,8 +1,13 @@
 import React, { useContext } from 'react';
 import UserContext from '../../context/users/userContext';
 
-function Bar() {
-  const { user } = useContext(UserContext);
+function Bar(props) {
+  const { user, setLogOut } = useContext(UserContext);
+
+  const handleClick = () => {
+    setLogOut();
+  }
+
   return (
     <header className="app-header">
       {user && (
@@ -12,7 +17,7 @@ function Bar() {
       )}
 
       <nav className="nav-principal">
-        <button className="btn btn-blank cerrar-sesion">Log Out</button>
+        <button onClick={handleClick} className="btn btn-blank cerrar-sesion">Log Out</button>
       </nav>
     </header>
   );

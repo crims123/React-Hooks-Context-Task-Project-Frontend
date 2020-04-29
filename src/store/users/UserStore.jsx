@@ -11,6 +11,7 @@ import {
   GET__USER,
   LOGIN__ERROR,
   LOGIN__USER,
+  LOGOUT__USER,
 } from '../../types';
 
 function UserStore(props) {
@@ -117,6 +118,14 @@ function UserStore(props) {
     }
   };
 
+  const setLogOut = () => {
+    localStorage.removeItem('token');
+    
+    dispatch({
+      type: LOGOUT__USER,
+    });
+  };
+
   return (
     <userContext.Provider
       value={{
@@ -127,6 +136,7 @@ function UserStore(props) {
         authenticated: state.authenticated,
         setAuthenticated,
         getUser,
+        setLogOut,
       }}
     >
       {props.children}
