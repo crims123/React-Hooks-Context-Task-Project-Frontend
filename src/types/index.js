@@ -1,3 +1,5 @@
+export const GET__PROJECTS = 'GET__PROJECTS';
+export const GET__PROJECTS__ERROR = 'GET__PROJECTS__ERROR';
 export const SHOW__PROJECT = 'SHOW__PROJECT';
 export const ADD__PROJECT = 'ADD__PROJECT';
 export const ADD__PROJECT__ERROR = 'ADD__PROJECT__ERROR';

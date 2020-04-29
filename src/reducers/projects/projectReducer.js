@@ -1,4 +1,6 @@
 import {
+  GET__PROJECTS,
+  GET__PROJECTS__ERROR,
   SHOW__PROJECT,
   ADD__PROJECT,
   ADD__PROJECT__ERROR,
@@ -9,6 +11,19 @@ import {
 
 export default (state, action) => {
   switch (action.type) {
+    case GET__PROJECTS:
+      return {
+        ...state,
+        projects: action.payload,
+        projectsError: false,
+      };
+
+    case GET__PROJECTS__ERROR:
+      return {
+        ...state,
+        projectsError: true,
+      };
+
     case SHOW__PROJECT:
       return {
         ...state,

@@ -3,6 +3,8 @@ import projectContext from '../../context/projects/projectContext';
 import projectReducer from '../../reducers/projects/projectReducer';
 import axiosClient from '../../config/api';
 import {
+  GET__PROJECTS,
+  GET__PROJECTS__ERROR,
   SHOW__PROJECT,
   ADD__PROJECT,
   ADD__PROJECT__ERROR,
@@ -15,11 +17,27 @@ function ProjectStore(props) {
   const initialState = {
     showProject: false,
     projects: [],
+    projectsError: false,
     errorForm: false,
     currentProject: null,
   };
 
   const [state, dispatch] = useReducer(projectReducer, initialState);
+
+  const setGetProjects = async () => {
+    try {
+      const projects = await axiosClient.get('/api/projects');
+
+      dispatch({
+        type: GET__PROJECTS,
+        payload: projects.data.data.projects,
+      });
+    } catch (error) {
+      dispatch({
+        type: GET__PROJECTS__ERROR,
+      });
+    }
+  };
 
   const setShowProject = (value) => {
     dispatch({
@@ -68,9 +86,11 @@ function ProjectStore(props) {
   return (
     <projectContext.Provider
       value={{
+        setGetProjects,
         showProject: state.showProject,
         setShowProject,
         projects: state.projects,
+        projectsError: state.projectsError,
         setAddProject,
         errorForm: state.errorForm,
         setErrorForm,
