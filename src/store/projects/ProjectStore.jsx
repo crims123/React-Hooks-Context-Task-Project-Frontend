@@ -11,12 +11,13 @@ import {
   VALIDATE__FORM,
   CURRENT__PROJECT,
   DELETE__PROJECT,
+  DELETE__PROJECT__ERROR,
 } from '../../types';
 
 function ProjectStore(props) {
   const initialState = {
     showProject: false,
-    projects: [],
+    projects: null,
     projectsError: false,
     errorForm: false,
     currentProject: null,
@@ -76,11 +77,22 @@ function ProjectStore(props) {
     });
   };
 
-  const setDeleteProject = (project) => {
-    dispatch({
-      type: DELETE__PROJECT,
-      payload: project,
-    });
+  const setDeleteProject = async (project) => {
+    try {
+      await axiosClient.delete(`/api/projects/${project._id}`);
+
+      dispatch({
+        type: DELETE__PROJECT,
+        payload: project._id,
+      });
+
+      setGetProjects();
+    } catch (error) {
+      dispatch({
+        type: DELETE__PROJECT__ERROR,
+        payload: error,
+      });
+    }
   };
 
   return (

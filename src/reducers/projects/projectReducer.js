@@ -7,6 +7,7 @@ import {
   VALIDATE__FORM,
   CURRENT__PROJECT,
   DELETE__PROJECT,
+  DELETE__PROJECT__ERROR,
 } from '../../types';
 
 export default (state, action) => {
@@ -21,7 +22,6 @@ export default (state, action) => {
     case GET__PROJECTS__ERROR:
       return {
         ...state,
-        projectsError: true,
       };
 
     case SHOW__PROJECT:
@@ -63,6 +63,13 @@ export default (state, action) => {
           (project) => project.name !== action.payload.name
         ),
         currentProject: null,
+        deleteProject: !state.deleteProject,
+      };
+
+    case DELETE__PROJECT__ERROR:
+      return {
+        ...state,
+        projectsError: true,
       };
 
     default:

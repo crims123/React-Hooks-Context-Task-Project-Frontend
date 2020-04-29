@@ -6,6 +6,7 @@ export const ADD__PROJECT__ERROR = 'ADD__PROJECT__ERROR';
 export const VALIDATE__FORM = 'VALIDATE__FORM';
 export const CURRENT__PROJECT = 'CURRENT__PROJECT';
 export const DELETE__PROJECT = 'DELETE__PROJECT';
+export const DELETE__PROJECT__ERROR = 'DELETE__PROJECT__ERROR';
 
 export const ADD__TASK = 'ADD__TASK';
 export const FILTER__PROJECT__TASK = 'FILTER__PROJECT__TASK';
