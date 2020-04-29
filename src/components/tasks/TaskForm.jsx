@@ -25,8 +25,7 @@ function TaskForm() {
     } else {
       setAddTask({
         ...value,
-        projectId: currentProject.id,
-        id: Date.now(),
+        projectId: currentProject._id,
         state: false,
       });
     }

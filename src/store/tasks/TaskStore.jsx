@@ -1,6 +1,16 @@
-import React, { useReducer } from "react";
-import taskContext from "../../context/tasks/taskContext";
-import taskReducer from "../../reducers/tasks/taskReducer";
+import React, { useReducer } from 'react';
+import axiosClient from '../../config/api';
+import taskContext from '../../context/tasks/taskContext';
+import taskReducer from '../../reducers/tasks/taskReducer';
+import {
+  ADD__TASK,
+  FILTER__PROJECT__TASK,
+  VALIDATE__FORM__TASK,
+  DELETE__TASK,
+  CHANGE__STATE__TASK,
+  CHANGE__SELECTED__TASK,
+  MODIFY__SELECTED__TASK,
+} from '../../types';
 
 function TaskStore(props) {
   const initialState = {
@@ -12,50 +22,56 @@ function TaskStore(props) {
 
   const [state, dispatch] = useReducer(taskReducer, initialState);
 
-  const setAddTask = (task) => {
-    dispatch({
-      type: "ADD__TASK",
-      payload: task,
-    });
+  const setAddTask = async (task) => {
+    try {
+      const newTask = await axiosClient.post('/api/tasks/', task);
+
+      dispatch({
+        type: ADD__TASK,
+        payload: newTask.data.data.task,
+      });
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   const setProjectTasks = (project) => {
     dispatch({
-      type: "FILTER__PROJECT__TASK",
+      type: FILTER__PROJECT__TASK,
       payload: project,
     });
   };
 
   const setErrorForm = () => {
     dispatch({
-      type: "VALIDATE__FORM__TASK",
+      type: VALIDATE__FORM__TASK,
     });
   };
 
   const setDeleteTask = (id) => {
     dispatch({
-      type: "DELETE__TASK",
+      type: DELETE__TASK,
       payload: id,
     });
   };
 
   const setStateTask = (id) => {
     dispatch({
-      type: "CHANGE__STATE__TASK",
+      type: CHANGE__STATE__TASK,
       payload: id,
     });
   };
 
   const setSelectedTask = (task) => {
     dispatch({
-      type: "CHANGE__SELECTED__TASK",
+      type: CHANGE__SELECTED__TASK,
       payload: task,
     });
   };
 
   const setModifyTask = (task) => {
     dispatch({
-      type: "MODIFY__SELECTED__TASK",
+      type: MODIFY__SELECTED__TASK,
       payload: task,
     });
   };
