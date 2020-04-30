@@ -6,16 +6,16 @@ import {
   CHANGE__STATE__TASK,
   CHANGE__SELECTED__TASK,
   MODIFY__SELECTED__TASK,
-} from "../../types";
+} from '../../types';
 
 export default (state, action) => {
   switch (action.type) {
     case GET__TASKS:
-        return {
-          ...state,
-          projectTasks: action.payload,
-          errorForm: false,
-        };
+      return {
+        ...state,
+        projectTasks: action.payload,
+        errorForm: false,
+      };
 
     case ADD__TASK:
       return {
@@ -34,9 +34,9 @@ export default (state, action) => {
     case DELETE__TASK:
       return {
         ...state,
-        tasks: state.tasks.filter((task) => task.id !== action.payload),
+        tasks: state.tasks.filter((task) => task._id !== action.payload),
         projectTasks: state.projectTasks.filter(
-          (task) => task.id !== action.payload
+          (task) => task._id !== action.payload
         ),
       };
 
@@ -68,7 +68,7 @@ export default (state, action) => {
         ),
         selectedTask: null,
       };
-      
+
     default:
       return state;
   }

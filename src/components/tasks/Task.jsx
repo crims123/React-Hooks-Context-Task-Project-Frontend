@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
-import taskContext from "../../context/tasks/taskContext";
+import React, { useContext } from 'react';
+import taskContext from '../../context/tasks/taskContext';
 
-function Task({ task, task: { name, state, id } }) {
+function Task({ task, task: { name, state, _id } }) {
   const { setDeleteTask, setStateTask, setSelectedTask } = useContext(
     taskContext
   );
@@ -10,8 +10,8 @@ function Task({ task, task: { name, state, id } }) {
     setSelectedTask(task);
   };
 
-  const handleDeleTask = (id) => {
-    setDeleteTask(id);
+  const handleDeleTask = () => {
+    setDeleteTask(_id);
   };
 
   const handleTaskState = () => {
@@ -51,7 +51,7 @@ function Task({ task, task: { name, state, id } }) {
         <button
           type="button"
           className="btn btn-secundario"
-          onClick={() => handleDeleTask(id)}
+          onClick={handleDeleTask}
         >
           Delete
         </button>

@@ -55,11 +55,20 @@ function TaskStore(props) {
     });
   };
 
-  const setDeleteTask = (id) => {
-    dispatch({
-      type: DELETE__TASK,
-      payload: id,
-    });
+  const setDeleteTask = async(id) => {
+    try{
+      await axiosClient.delete(`/api/tasks/${id}`);
+    
+      dispatch({
+        type: DELETE__TASK,
+        payload: id,
+      });
+
+    } catch(error){
+      console.log(error)
+    }
+
+    
   };
 
   const setStateTask = (id) => {
