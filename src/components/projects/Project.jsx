@@ -4,11 +4,11 @@ import taskContext from "../../context/tasks/taskContext";
 
 function Project({ project, project: { name } }) {
   const { setCurrentProject } = useContext(projectContext);
-  const { setProjectTasks } = useContext(taskContext);
+  const { setGetTasks } = useContext(taskContext);
 
   const handleClick = () => {
     setCurrentProject(project);
-    setProjectTasks(project);
+    setGetTasks(project._id);
   };
 
   return (

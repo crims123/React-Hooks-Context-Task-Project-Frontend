@@ -3,8 +3,8 @@ import axiosClient from '../../config/api';
 import taskContext from '../../context/tasks/taskContext';
 import taskReducer from '../../reducers/tasks/taskReducer';
 import {
+  GET__TASKS,
   ADD__TASK,
-  FILTER__PROJECT__TASK,
   VALIDATE__FORM__TASK,
   DELETE__TASK,
   CHANGE__STATE__TASK,
@@ -22,6 +22,20 @@ function TaskStore(props) {
 
   const [state, dispatch] = useReducer(taskReducer, initialState);
 
+  const setGetTasks = async (id) => {
+    try {
+      const tasks = await axiosClient.get(`/api/tasks/${id}`);
+
+      dispatch({
+        type: GET__TASKS,
+        payload: tasks.data.data.tasks,
+      });
+    } catch (error) {
+      console.log(error)
+    }
+  };
+
+
   const setAddTask = async (task) => {
     try {
       const newTask = await axiosClient.post('/api/tasks/', task);
@@ -33,13 +47,6 @@ function TaskStore(props) {
     } catch (error) {
       console.log(error)
     }
-  };
-
-  const setProjectTasks = (project) => {
-    dispatch({
-      type: FILTER__PROJECT__TASK,
-      payload: project,
-    });
   };
 
   const setErrorForm = () => {
@@ -80,9 +87,9 @@ function TaskStore(props) {
     <taskContext.Provider
       value={{
         tasks: state.tasks,
+        setGetTasks,
         setAddTask,
         projectTasks: state.projectTasks,
-        setProjectTasks,
         errorForm: state.errorForm,
         setErrorForm,
         setDeleteTask,

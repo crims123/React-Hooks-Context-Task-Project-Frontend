@@ -9,7 +9,7 @@ export const DELETE__PROJECT = 'DELETE__PROJECT';
 export const DELETE__PROJECT__ERROR = 'DELETE__PROJECT__ERROR';
 
 export const ADD__TASK = 'ADD__TASK';
-export const FILTER__PROJECT__TASK = 'FILTER__PROJECT__TASK';
+export const GET__TASKS = 'GET__TASKS';
 export const VALIDATE__FORM__TASK = 'VALIDATE__FORM__TASK';
 export const DELETE__TASK = 'DELETE__TASK';
 export const CHANGE__STATE__TASK = 'CHANGE__STATE__TASK';
