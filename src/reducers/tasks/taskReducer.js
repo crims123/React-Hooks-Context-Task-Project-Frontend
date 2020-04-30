@@ -67,6 +67,7 @@ export default (state, action) => {
           task._id === action.payload._id ? action.payload : task
         ),
         selectedTask: null,
+        errorForm: false,
       };
 
     default:

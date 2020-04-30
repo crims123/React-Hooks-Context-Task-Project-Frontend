@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
-import useInput from "../../hooks/useInput";
-import projectContext from "../../context/projects/projectContext";
-import taskContext from "../../context/tasks/taskContext";
+import React, { useContext } from 'react';
+import useInput from '../../hooks/useInput';
+import projectContext from '../../context/projects/projectContext';
+import taskContext from '../../context/tasks/taskContext';
 
 function TaskForm() {
   const { currentProject } = useContext(projectContext);
+
   const {
     setAddTask,
     setErrorForm,
@@ -12,8 +13,9 @@ function TaskForm() {
     selectedTask,
     setModifyTask,
   } = useContext(taskContext);
-  const [value, handleChange] = useInput({
-    name: "",
+
+  const [value, handleChange, setValues] = useInput({
+    name: '',
   });
 
   const handleSubmit = (e) => {
@@ -22,6 +24,8 @@ function TaskForm() {
       setErrorForm();
     } else if (selectedTask) {
       setModifyTask({ ...selectedTask, ...value });
+      e.target.reset();
+      setValues({ name: '' });
     } else {
       setAddTask({
         ...value,
@@ -30,6 +34,7 @@ function TaskForm() {
       });
     }
     e.target.reset();
+    setValues({ name: '' });
   };
 
   if (!currentProject) return null;
@@ -41,7 +46,7 @@ function TaskForm() {
           <input
             type="text"
             className="input-text"
-            placeholder={selectedTask ? selectedTask.name : "Task Name..."}
+            placeholder={selectedTask ? selectedTask.name : 'Task Name...'}
             name="name"
             onChange={handleChange}
           />
@@ -51,7 +56,7 @@ function TaskForm() {
           <input
             type="submit"
             className="btn btn-primario btn-submit btn-block"
-            value={selectedTask ? "Edit Task" : "Add Task"}
+            value={selectedTask ? 'Edit Task' : 'Add Task'}
           />
         </div>
       </form>
