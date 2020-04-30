@@ -1,12 +1,18 @@
 import React, { useContext } from 'react';
 import UserContext from '../../context/users/userContext';
+import ProjectContext from '../../context/projects/projectContext';
+import TaskContext from '../../context/tasks/taskContext';
 
-function Bar(props) {
+function Bar() {
   const { user, setLogOut } = useContext(UserContext);
+  const { setResetProjectState } = useContext(ProjectContext);
+  const { setResetTaskState } = useContext(TaskContext);
 
   const handleClick = () => {
     setLogOut();
-  }
+    setResetProjectState();
+    setResetTaskState();
+  };
 
   return (
     <header className="app-header">
@@ -17,7 +23,9 @@ function Bar(props) {
       )}
 
       <nav className="nav-principal">
-        <button onClick={handleClick} className="btn btn-blank cerrar-sesion">Log Out</button>
+        <button onClick={handleClick} className="btn btn-blank cerrar-sesion">
+          Log Out
+        </button>
       </nav>
     </header>
   );

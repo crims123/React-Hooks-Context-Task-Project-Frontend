@@ -12,6 +12,7 @@ import {
   CURRENT__PROJECT,
   DELETE__PROJECT,
   DELETE__PROJECT__ERROR,
+  RESET__PROJECT__STATE,
 } from '../../types';
 
 function ProjectStore(props) {
@@ -95,6 +96,12 @@ function ProjectStore(props) {
     }
   };
 
+  const setResetProjectState = () => {
+    dispatch({
+      type: RESET__PROJECT__STATE,
+    });
+  };
+
   return (
     <projectContext.Provider
       value={{
@@ -109,6 +116,7 @@ function ProjectStore(props) {
         currentProject: state.currentProject,
         setCurrentProject,
         setDeleteProject,
+        setResetProjectState,
       }}
     >
       {props.children}

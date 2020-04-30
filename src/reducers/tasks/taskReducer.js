@@ -6,6 +6,7 @@ import {
   CHANGE__STATE__TASK,
   CHANGE__SELECTED__TASK,
   MODIFY__SELECTED__TASK,
+  RESET__TASK__STATE,
 } from '../../types';
 
 export default (state, action) => {
@@ -68,6 +69,14 @@ export default (state, action) => {
         ),
         selectedTask: null,
         errorForm: false,
+      };
+
+    case RESET__TASK__STATE:
+      return {
+        tasks: [],
+        projectTasks: [],
+        errorForm: false,
+        selectedTask: null,
       };
 
     default:

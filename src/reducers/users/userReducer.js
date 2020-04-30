@@ -67,11 +67,12 @@ export default (state, action) => {
 
     case LOGOUT__USER:
       return {
-        ...state,
-        authenticated: false,
         token: null,
-        user: null,
+        authenticated: null,
         loadLogin: true,
+        alert: null,
+        user: null,
+        message: null,
       };
 
     default:

@@ -8,6 +8,7 @@ import {
   CURRENT__PROJECT,
   DELETE__PROJECT,
   DELETE__PROJECT__ERROR,
+  RESET__PROJECT__STATE,
 } from '../../types';
 
 export default (state, action) => {
@@ -70,6 +71,15 @@ export default (state, action) => {
       return {
         ...state,
         projectsError: true,
+      };
+
+    case RESET__PROJECT__STATE:
+      return {
+        showProject: false,
+        projects: null,
+        projectsError: false,
+        errorForm: false,
+        currentProject: null,
       };
 
     default:

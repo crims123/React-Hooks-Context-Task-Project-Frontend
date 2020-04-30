@@ -10,6 +10,7 @@ import {
   CHANGE__STATE__TASK,
   CHANGE__SELECTED__TASK,
   MODIFY__SELECTED__TASK,
+  RESET__TASK__STATE,
 } from '../../types';
 
 function TaskStore(props) {
@@ -100,6 +101,12 @@ function TaskStore(props) {
     }
   };
 
+  const setResetTaskState = () => {
+    dispatch({
+      type: RESET__TASK__STATE,
+    });
+  };
+
   return (
     <taskContext.Provider
       value={{
@@ -114,6 +121,7 @@ function TaskStore(props) {
         selectedTask: state.selectedTask,
         setSelectedTask,
         setModifyTask,
+        setResetTaskState,
       }}
     >
       {props.children}
