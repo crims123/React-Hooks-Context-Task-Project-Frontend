@@ -19,7 +19,7 @@ function ProjectsList() {
   if (projectsError) return <p>Error on the server</p>;
 
   return (
-    <ul className="listado-proyectos">
+    <ul className="list-projects">
       {projects &&
         projects.map((project, index) => (
           <Project key={index} project={project} />

@@ -20,18 +20,18 @@ function Task({ task, task: { name, state, _id } }) {
   };
 
   return (
-    <li className="tarea sombra">
+    <li className="task shadow">
       <p>{name} </p>
 
-      <div className="estado">
+      <div className="state">
         {state ? (
-          <button type="button" className="completo" onClick={handleTaskState}>
+          <button type="button" className="complet" onClick={handleTaskState}>
             Complete
           </button>
         ) : (
           <button
             type="button"
-            className="incompleto"
+            className="incomplet"
             onClick={handleTaskState}
           >
             Incomplete
@@ -39,10 +39,10 @@ function Task({ task, task: { name, state, _id } }) {
         )}
       </div>
 
-      <div className="acciones">
+      <div className="actions">
         <button
           type="button"
-          className="btn btn-primario"
+          className="btn btn-primary"
           onClick={handleEditTask}
         >
           Edit
@@ -50,7 +50,7 @@ function Task({ task, task: { name, state, _id } }) {
 
         <button
           type="button"
-          className="btn btn-secundario"
+          className="btn btn-secondary"
           onClick={handleDeleTask}
         >
           Delete

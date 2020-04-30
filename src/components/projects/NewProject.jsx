@@ -35,14 +35,14 @@ function NewProject() {
     <Fragment>
       <button
         type="button"
-        className="btn btn-block btn-primario"
+        className="btn btn-block btn-primary"
         onClick={handleClickNewProject}
       >
         New Project
       </button>
 
       {showProject ? (
-        <form className="formulario-nuevo-proyecto" onSubmit={handleSubmit}>
+        <form className="form-new-project" onSubmit={handleSubmit}>
           <input
             type="text"
             className="input-text"
@@ -53,13 +53,13 @@ function NewProject() {
 
           <input
             type="submit"
-            className="btn btn-primario btn-block"
+            className="btn btn-primary btn-block"
             value="Add Project"
           />
         </form>
       ) : null}
 
-      {errorForm ? <p className="mensaje error">{errorForm.msg}</p> : null}
+      {errorForm ? <p className="message error">{errorForm.msg}</p> : null}
     </Fragment>
   );
 }

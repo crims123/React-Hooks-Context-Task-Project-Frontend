@@ -11,7 +11,7 @@ function Sidebar() {
 
       <NewProject />
 
-      <div className="proyectos">
+      <div className="projects">
         <h2>Your Projects</h2>
         <ProjectsList />
       </div>

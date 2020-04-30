@@ -19,16 +19,16 @@ function Login(props) {
   };
 
   return (
-    <div className="form-usuario">
+    <div className="form-user">
       {alert ? (
-        <div className={`alerta ${alert.category}`}> {alert.msg} </div>
+        <div className={`alert ${alert.category}`}> {alert.msg} </div>
       ) : null}
       }
-      <div className="contenedor-form sombra-dark">
+      <div className="container-form shadow-dark">
         <h1>Log in</h1>
 
         <form onSubmit={handleSubmit}>
-          <div className="campo-form">
+          <div className="field-form">
             <label htmlFor="email">Email</label>
             <input
               type="email"
@@ -39,7 +39,7 @@ function Login(props) {
             />
           </div>
 
-          <div className="campo-form">
+          <div className="field-form">
             <label htmlFor="password">Password</label>
             <input
               type="password"
@@ -50,16 +50,16 @@ function Login(props) {
             />
           </div>
 
-          <div className="campo-form">
+          <div className="field-form">
             <input
               type="submit"
-              className="btn btn-primario btn-block"
+              className="btn btn-primary btn-block"
               value="Log in"
             />
           </div>
         </form>
 
-        <Link to={'/register'} className="enlace-cuenta">
+        <Link to={'/register'} className="link-account">
           Register
         </Link>
       </div>

@@ -14,13 +14,13 @@ function Projects() {
   }, []);
 
   return (
-    <div className="contenedor-app">
+    <div className="container-app">
       <Sidebar />
-      <div className="seccion-principal">
+      <div className="section-principal">
         <Bar />
         <main>
           <TaskForm />
-          <div className="contenedor-tareas">
+          <div className="container-tasks">
             <TaskList />
           </div>
         </main>

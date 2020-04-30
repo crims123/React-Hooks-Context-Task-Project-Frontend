@@ -17,13 +17,13 @@ function Bar() {
   return (
     <header className="app-header">
       {user && (
-        <p className="nombre-usuario">
+        <p className="name-user">
           Welcome <span>{user.name}</span>{' '}
         </p>
       )}
 
       <nav className="nav-principal">
-        <button onClick={handleClick} className="btn btn-blank cerrar-sesion">
+        <button onClick={handleClick} className="btn btn-blank close-session">
           Log Out
         </button>
       </nav>

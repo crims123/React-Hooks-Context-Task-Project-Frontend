@@ -42,9 +42,9 @@ function TaskForm() {
   if (!currentProject) return null;
 
   return (
-    <div className="formulario">
+    <div className="form">
       <form onSubmit={handleSubmit}>
-        <div className="contenedor-input">
+        <div className="container-input">
           <input
             type="text"
             className="input-text"
@@ -54,17 +54,17 @@ function TaskForm() {
           />
         </div>
 
-        <div className="contenedor-input">
+        <div className="container-input">
           <input
             type="submit"
-            className="btn btn-primario btn-submit btn-block"
+            className="btn btn-primary btn-submit btn-block"
             value={selectedTask ? 'Edit Task' : 'Add Task'}
           />
         </div>
       </form>
 
       {errorForm ? (
-        <p className="mensaje error">Task name is required</p>
+        <p className="message error">Task name is required</p>
       ) : null}
     </div>
   );

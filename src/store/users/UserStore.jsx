@@ -55,7 +55,7 @@ function UserStore(props) {
     } catch (error) {
       const alert = {
         msg: error.response.data.message,
-        category: 'alerta-error',
+        category: 'alert-error',
       };
 
       dispatch({
@@ -104,7 +104,7 @@ function UserStore(props) {
     } catch (error) {
       const alert = {
         msg: error.response.data.message,
-        category: 'alerta-error',
+        category: 'alert-error',
       };
 
       dispatch({

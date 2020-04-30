@@ -17,15 +17,15 @@ function TaskList() {
       {currentProject ? (
         <Fragment>
           <h2>Project: {currentProject.name}</h2>
-          <ul className="listado-tareas">
+          <ul className="list-tasks">
             {tasks.length === 0 ? (
-              <li className="tarea">
+              <li className="task">
                 <p>No tasks</p>
               </li>
             ) : (
               <TransitionGroup>
                 {tasks.map((task, index) => (
-                  <CSSTransition key={index} timeout={200} classNames="tarea">
+                  <CSSTransition key={index} timeout={200} classNames="task">
                     <Task task={task} />
                   </CSSTransition>
                 ))}
