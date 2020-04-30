@@ -20,6 +20,7 @@ function TaskForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!value.name) {
       setErrorForm();
     } else if (selectedTask) {
@@ -33,6 +34,7 @@ function TaskForm() {
         state: false,
       });
     }
+    
     e.target.reset();
     setValues({ name: '' });
   };

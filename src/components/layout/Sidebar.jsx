@@ -1,6 +1,6 @@
-import React from "react";
-import NewProject from "../projects/NewProject";
-import ProjectsList from "../projects/ProjectsList";
+import React from 'react';
+import NewProject from '../projects/NewProject';
+import ProjectsList from '../projects/ProjectsList';
 
 function Sidebar() {
   return (

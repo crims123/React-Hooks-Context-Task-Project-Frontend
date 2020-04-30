@@ -1,12 +1,12 @@
-import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./components/auth/Login";
-import Register from "./components/auth/Register";
-import Projects from "./components/projects/Projects";
-import PrivateRoute from "./components/routes/PrivateRoutes";
-import UserStore from "./store/users/UserStore";
-import ProjectStore from "./store/projects/ProjectStore";
-import TaskStore from "./store/tasks/TaskStore";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import Projects from './components/projects/Projects';
+import PrivateRoute from './components/routes/PrivateRoutes';
+import UserStore from './store/users/UserStore';
+import ProjectStore from './store/projects/ProjectStore';
+import TaskStore from './store/tasks/TaskStore';
 
 function App() {
   return (

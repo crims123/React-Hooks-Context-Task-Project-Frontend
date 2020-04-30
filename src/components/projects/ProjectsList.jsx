@@ -7,10 +7,11 @@ function ProjectsList() {
   const { projects, setGetProjects, projectsError } = useContext(
     projectContext
   );
-  const { user } = useContext(userContext);
 
+  const { user } = useContext(userContext);
   useEffect(() => {
     setGetProjects();
+    // eslint-disable-next-line
   }, [user]);
 
   if (projects && projects.length === 0) return <p>No Projects add One</p>;

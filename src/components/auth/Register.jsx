@@ -4,7 +4,14 @@ import useInput from '../../hooks/useInput';
 import UserContext from '../../context/users/userContext';
 
 function Register(props) {
-  const { alert, setAddAlert, setAddUser, authenticated } = useContext(UserContext);
+  const { alert, setAddAlert, setAddUser, authenticated } = useContext(
+    UserContext
+  );
+  useEffect(() => {
+    if (authenticated) {
+      props.history.push('/projects');
+    }
+  }, [authenticated, props.history]);
 
   const [value, handleChange] = useInput({
     name: '',
@@ -12,12 +19,6 @@ function Register(props) {
     password: '',
     confirm: '',
   });
-
-  useEffect(() => {
-    if (authenticated) {
-      props.history.push('/projects');
-    }
-  }, [authenticated, props.history]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

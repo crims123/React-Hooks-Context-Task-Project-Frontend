@@ -1,27 +1,29 @@
-import React, { useContext, useEffect } from "react";
-import { Link } from "react-router-dom";
-import useInput from "../../hooks/useInput";
+import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import useInput from '../../hooks/useInput';
 import UserContext from '../../context/users/userContext';
 
 function Login(props) {
   const { authenticated, setGetLoginToken, alert } = useContext(UserContext);
-  const [value, handleChange] = useInput({ email: "", password: "" });
-
   useEffect(() => {
     if (authenticated) {
       props.history.push('/projects');
     }
   }, [authenticated, props.history]);
 
+  const [value, handleChange] = useInput({ email: '', password: '' });
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    setGetLoginToken(value)
+    setGetLoginToken(value);
   };
 
   return (
     <div className="form-usuario">
-      {alert ? ( <div className={`alerta ${alert.category}`}> {alert.msg} </div> )  : null }}
-
+      {alert ? (
+        <div className={`alerta ${alert.category}`}> {alert.msg} </div>
+      ) : null}
+      }
       <div className="contenedor-form sombra-dark">
         <h1>Log in</h1>
 
@@ -57,7 +59,7 @@ function Login(props) {
           </div>
         </form>
 
-        <Link to={"/register"} className="enlace-cuenta">
+        <Link to={'/register'} className="enlace-cuenta">
           Register
         </Link>
       </div>

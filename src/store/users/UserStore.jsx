@@ -122,7 +122,7 @@ function UserStore(props) {
 
   const setLogOut = () => {
     localStorage.removeItem('token');
-    
+
     dispatch({
       type: LOGOUT__USER,
     });

@@ -21,6 +21,7 @@ function NewProject() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (!value.name) {
       setErrorForm('The Project name is mandatory');
     } else {
