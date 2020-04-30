@@ -87,11 +87,17 @@ function TaskStore(props) {
     });
   };
 
-  const setModifyTask = (task) => {
-    dispatch({
-      type: MODIFY__SELECTED__TASK,
-      payload: task,
-    });
+  const setModifyTask = async (task) => {
+    try {
+      await axiosClient.put(`/api/tasks/${task._id}`, task);
+
+      dispatch({
+        type: MODIFY__SELECTED__TASK,
+        payload: task,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
