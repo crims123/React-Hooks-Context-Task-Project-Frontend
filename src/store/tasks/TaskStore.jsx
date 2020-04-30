@@ -31,10 +31,9 @@ function TaskStore(props) {
         payload: tasks.data.data.tasks,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
-
 
   const setAddTask = async (task) => {
     try {
@@ -45,7 +44,7 @@ function TaskStore(props) {
         payload: newTask.data.data.task,
       });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 
@@ -55,27 +54,30 @@ function TaskStore(props) {
     });
   };
 
-  const setDeleteTask = async(id) => {
-    try{
+  const setDeleteTask = async (id) => {
+    try {
       await axiosClient.delete(`/api/tasks/${id}`);
-    
+
       dispatch({
         type: DELETE__TASK,
         payload: id,
       });
-
-    } catch(error){
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
-
-    
   };
 
-  const setStateTask = (id) => {
-    dispatch({
-      type: CHANGE__STATE__TASK,
-      payload: id,
-    });
+  const setStateTask = async (task) => {
+    try {
+      await axiosClient.put(`/api/tasks/${task._id}`, task);
+
+      dispatch({
+        type: CHANGE__STATE__TASK,
+        payload: task,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const setSelectedTask = (task) => {

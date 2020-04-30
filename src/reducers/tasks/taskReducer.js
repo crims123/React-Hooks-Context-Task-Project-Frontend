@@ -44,10 +44,10 @@ export default (state, action) => {
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task.id === action.payload.id ? action.payload : task
+          task._id === action.payload._id ? action.payload : task
         ),
         projectTasks: state.projectTasks.map((task) =>
-          task.id === action.payload.id ? action.payload : task
+          task._id === action.payload._id ? action.payload : task
         ),
       };
 
