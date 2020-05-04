@@ -6,7 +6,7 @@ import taskContext from '../../context/tasks/taskContext';
 
 function TaskList() {
   const { currentProject, setDeleteProject } = useContext(projectContext);
-  const { projectTasks: tasks } = useContext(taskContext);
+  const { tasks } = useContext(taskContext);
 
   const handleClick = () => {
     setDeleteProject(currentProject);

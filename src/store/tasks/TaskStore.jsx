@@ -16,7 +16,6 @@ import {
 function TaskStore(props) {
   const initialState = {
     tasks: [],
-    projectTasks: [],
     errorForm: false,
     selectedTask: null,
   };
@@ -113,7 +112,6 @@ function TaskStore(props) {
         tasks: state.tasks,
         setGetTasks,
         setAddTask,
-        projectTasks: state.projectTasks,
         errorForm: state.errorForm,
         setErrorForm,
         setDeleteTask,

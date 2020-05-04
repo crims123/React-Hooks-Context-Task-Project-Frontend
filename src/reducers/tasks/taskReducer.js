@@ -14,7 +14,7 @@ export default (state, action) => {
     case GET__TASKS:
       return {
         ...state,
-        projectTasks: action.payload,
+        tasks: action.payload,
         errorForm: false,
       };
 
@@ -22,7 +22,6 @@ export default (state, action) => {
       return {
         ...state,
         tasks: [...state.tasks, action.payload],
-        projectTasks: [...state.projectTasks, action.payload],
         errorForm: false,
       };
 
@@ -36,18 +35,12 @@ export default (state, action) => {
       return {
         ...state,
         tasks: state.tasks.filter((task) => task._id !== action.payload),
-        projectTasks: state.projectTasks.filter(
-          (task) => task._id !== action.payload
-        ),
       };
 
     case CHANGE__STATE__TASK:
       return {
         ...state,
         tasks: state.tasks.map((task) =>
-          task._id === action.payload._id ? action.payload : task
-        ),
-        projectTasks: state.projectTasks.map((task) =>
           task._id === action.payload._id ? action.payload : task
         ),
       };
@@ -64,9 +57,6 @@ export default (state, action) => {
         tasks: state.tasks.map((task) =>
           task._id === action.payload._id ? action.payload : task
         ),
-        projectTasks: state.projectTasks.map((task) =>
-          task._id === action.payload._id ? action.payload : task
-        ),
         selectedTask: null,
         errorForm: false,
       };
@@ -74,7 +64,6 @@ export default (state, action) => {
     case RESET__TASK__STATE:
       return {
         tasks: [],
-        projectTasks: [],
         errorForm: false,
         selectedTask: null,
       };
