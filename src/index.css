@@ -137,6 +137,20 @@ aside {
   color: var(--gris2);
 }
 
+.input-auth {
+  width: 100%;
+}
+
+@media (max-width: 425px) {
+  .field-form {
+    flex-direction: column;
+  }
+
+  .field-form-label {
+    display: none;
+  }
+}
+
 .projects {
   margin-top: 10rem;
 }

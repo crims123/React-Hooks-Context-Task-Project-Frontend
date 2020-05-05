@@ -29,22 +29,28 @@ function Login(props) {
 
         <form onSubmit={handleSubmit}>
           <div className="field-form">
-            <label htmlFor="email">Email</label>
+            <label className="field-form-label" htmlFor="email">
+              Email
+            </label>
             <input
               type="email"
               id="email"
               name="email"
+              className="input-auth"
               placeholder="Add Email"
               onChange={handleChange}
             />
           </div>
 
           <div className="field-form">
-            <label htmlFor="password">Password</label>
+            <label className="field-form-label" htmlFor="password">
+              Password
+            </label>
             <input
               type="password"
               id="password"
               name="password"
+              className="input-auth"
               placeholder="Add Password"
               onChange={handleChange}
             />
